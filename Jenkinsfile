@@ -1,9 +1,9 @@
 pipeline {
     agent any
     parameters {
-        //String(Name: 'VERSION', defaultValue: '', description: 'version to deploy on dev'
-        //Choice(Name: 'VERSION', choices: [''1.1.0','1.2.0','1.3.0'], description: 'version to deploy on dev')
-        booleanParam(Name: 'executeTests', defaultValue: true, description: 'test only when ticked')
+        String(name: 'VERSION', defaultValue: '', description: 'version to deploy on dev'
+        Choice(name: 'VERSION', choices: [''1.1.0','1.2.0','1.3.0'], description: 'version to deploy on dev')
+        booleanParam(name: 'executeTests', defaultValue: true, description: 'test only when ticked')
     }
     stages {
         stage("Build") {
