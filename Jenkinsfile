@@ -1,9 +1,12 @@
 pipeline {
     agent any
+    environment {
+        NEW_VERSION = '1.3.0'    
+    }
     parameters {
         //string(name: 'VERSION', defaultValue: '', description: 'version to deploy on dev')
         //choice(name: 'VERSION', choices: [''1.1.0','1.2.0','1.3.0'], description: 'version to deploy on dev')
-        booleanParam(name: 'executePush', defaultValue: true, description: 'test only when ticked')
+        //booleanParam(name: 'executePush', defaultValue: true, description: 'test only when ticked')
     }
     stages {
         stage("Build") {
@@ -12,11 +15,11 @@ pipeline {
             }
         }
         stage("Push") {
-            when {
-                expression {
-                    params.executePush   
-                }    
-            }    
+          //  when {
+           //     expression {
+             //       params.executePush   
+               // }    
+              //}    
             steps {
                 echo 'Pushing Build to ECR'
             }
