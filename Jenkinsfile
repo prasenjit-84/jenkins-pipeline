@@ -1,19 +1,20 @@
 pipeline {
     agent any
+
     stages {
-        stage("Build") {
+        stage('Build') {
             steps {
-                echo "Building version $(NEW_VERSION)"
+                echo 'Building..'
             }
         }
-        stage("Push") {
+        stage('Test') {
             steps {
-                echo 'Pushing Build to ECR'
+                echo 'Testing..'
             }
         }
-        stage("Deploy") {
+        stage('Deploy') {
             steps {
-                echo 'Deploying to ECS ....'
+                echo 'Deploying....'
             }
         }
     }
