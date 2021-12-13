@@ -1,20 +1,30 @@
 pipeline {
     agent any
-
+    parameters {
+        //String(Name: 'VERSION', defaultValue: '', description: 'version to deploy on dev'
+        Choice(Name: 'VERSION', choices: [''1.1.0','1.2.0','1.3.0'], description: 'version to deploy on dev')
+        booleanParam(Name: 'executeTests', defaultValue: true, description: 'test only when ticked')
+    }
     stages {
-        stage('Build') {
+        stage("Build") {
             steps {
                 echo 'Building..'
             }
         }
-        stage('Test') {
+        stage("Test") {
+            when {
+                expression {
+                    params.executeTests   
+                }    
+            }    
             steps {
                 echo 'Testing..'
             }
         }
-        stage('Deploy') {
+        stage("Deploy") {
             steps {
-                echo 'Deploying....'
+                echo 'Deploying to ECS ....'
+                echo "Deplying version ${params.VERSION}"
             }
         }
     }
