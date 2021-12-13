@@ -11,7 +11,8 @@ pipeline {
     stages {
         stage("Build") {
             steps {
-                echo 'Building..'
+                //echo 'Building..'
+                echo "Building version $(NEW_VERSION)"
             }
         }
         stage("Push") {
